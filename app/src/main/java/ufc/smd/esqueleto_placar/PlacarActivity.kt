@@ -12,6 +12,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.getSystemService
 import androidx.core.widget.doAfterTextChanged
+import data.DatabaseController
 import data.VOLEI_POINT
 import data.VoleiConfig
 import data.VoleiJogo
@@ -158,6 +159,8 @@ class PlacarActivity : AppCompatActivity() {
     fun saveGame(v: View) {
         btSave.isEnabled = false
 
+        /// OLD SAVE FORMAT
+        /*
         val sharedFilename = "PreviousGames"
         val sp: SharedPreferences = getSharedPreferences(sharedFilename, Context.MODE_PRIVATE)
         var edShared = sp.edit()
@@ -174,6 +177,13 @@ class PlacarActivity : AppCompatActivity() {
         //Salvar como "match1"
         edShared.putString("match" + quantidadePartidas.toString(), dt.toString(StandardCharsets.ISO_8859_1.name()))
         edShared.commit()
+        */
+
+        val db = DatabaseController(v.context)
+        db.insertData(voleiJogo.nomePartida, voleiJogo.voleiPlacar.NomeTimeA,
+            voleiJogo.voleiPlacar.NomeTimeB, voleiJogo.voleiPlacar.setsTimeA,
+            voleiJogo.voleiPlacar.setsTimeB, voleiJogo.voleiPlacar.dataJogo,
+            voleiJogo.voleiPlacar.tempoDeJogo )
 
     }
 

@@ -5,8 +5,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import data.CreateDatabase
+import data.DatabaseController
 import data.VoleiPlacar
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -25,12 +28,9 @@ class PreviousGamesActivity : AppCompatActivity() {
         // Tipo de Layout Manager será Linear
         recyclerview.layoutManager = LinearLayoutManager(this)
 
+        /*
         // O ArrayList de Placares
-        val data = ArrayList<VoleiPlacar>()
-
-       // val date = Calendar.getInstance().time
-       // var dateTimeFormat = SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.getDefault())
-       // val data_hora = dateTimeFormat.format(date)
+        var data = ArrayList<VoleiPlacar>()
 
         val sharedFilename = "PreviousGames"
         val sp: SharedPreferences = getSharedPreferences(sharedFilename, Context.MODE_PRIVATE)
@@ -47,6 +47,11 @@ class PreviousGamesActivity : AppCompatActivity() {
                 }
             }
         }
+        */
+
+        var db = DatabaseController(applicationContext)
+        val data = db.loadData()
+
 
         // ArrayList enviado ao Adapter
         val adapter = CustomAdapter(data)
