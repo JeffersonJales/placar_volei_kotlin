@@ -5,7 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class CreateDatabase(context : Context?) : SQLiteOpenHelper(context, "placar_partida_volei", null, 1) {
+class CreateDatabase(context : Context?) : SQLiteOpenHelper(context, "placar_partida_volei.db", null, 1) {
 
     val tableName = "partida"
     val collumId = "id"
@@ -46,7 +46,11 @@ class CreateDatabase(context : Context?) : SQLiteOpenHelper(context, "placar_par
 class DatabaseController(context : Context) {
     val createDB = CreateDatabase(context)
 
-    fun insertData(nome_partida : String, nome_time_a : String, nome_time_b : String, sets_time_a : Int, sets_time_b : Int, data_jogo : Long, tempo_jogo : String) : Boolean{
+    fun insertData(nome_partida : String, nome_time_a :
+        String, nome_time_b : String,
+        sets_time_a : Int, sets_time_b : Int,
+        data_jogo : Long, tempo_jogo : String) : Boolean{
+
         try {
             var db = createDB.writableDatabase
             var values = ContentValues()
